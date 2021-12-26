@@ -33,6 +33,7 @@ public class StudentController {
 	// database
 	@GetMapping("/all")
 	private List<Student> getAllStudent() {
+		logger.info("getting all students:");
 		return studentService.getAllStudent();
 	}
 
@@ -46,7 +47,6 @@ public class StudentController {
 		} catch (java.util.NoSuchElementException e) {
 			logger.error("error while fetching student info+");
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Data not found for Id:" + id);
-
 		}
 		return s;
 	}
@@ -62,6 +62,7 @@ public class StudentController {
 	@PostMapping("/savestudent")
 	@ResponseBody
 	private int saveStudent(@RequestBody Student student) {
+		logger.info("saving students");
 		studentService.saveOrUpdate(student);
 		return student.getId();
 	}
